@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div class ="row">
+    <div class="users" *ngFor="let users of users$ | async">
+        <div class="user-info">
+            <h1 class="user-name">{{users.name}}</h1>
+            <h2 class="user-mail">{{users.email}}</h2>
+        </div>
+    </div>
+</div>
