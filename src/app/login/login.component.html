@@ -11,17 +11,20 @@
   <!-- partial:index.partial.html -->
   <div id="login-form-wrap">
     <h2>Login</h2>
-    <form id="login-form">
+    <form id="login-form" method="post" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <p>
-        <label for="name">Name: </label>
-        <input type="text" id="username" name="username" placeholder="Username" [formControl]="name" required><i
+        <label for="name">Email: </label>
+        <input type="text" id="email" name="email" placeholder="email" [formControl]="email" required><i
           class="validation"><span></span><span></span></i>
       </p>
       <p>
         <label for="password">Password: </label>
         <input type="password" id="password" name="password" placeholder="password" [formControl]="password" required><i
           class="validation"><span></span><span></span></i>
-        <input type="submit" id="login" value="Login">
+          <br>
+          <br>
+        <!-- <input type="submit" id="login" value="Login" name="login"> -->
+        <button class="button" type="submit" id="login">Login</button>
       </p>
     </form>
     <div id="create-account-wrap">
