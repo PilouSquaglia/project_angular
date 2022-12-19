@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
+import { ProfileService } from '../profile/profile.service';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +18,14 @@ export class LoginComponent {
   login$: Observable<any> | undefined;
 
   checkoutForm = this.formBuilder.group({
-    email:this.email,
-    password:this.password,
+    email: this.email,
+    password: this.password,
   })
 
   constructor(private loginService: LoginService,
-              private formBuilder: FormBuilder,
-              private httpClient : HttpClient){
+    private formBuilder: FormBuilder,
+    private httpClient: HttpClient,
+    private profileService: ProfileService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +38,17 @@ export class LoginComponent {
     console.log(this.checkoutForm.value);
     // this.httpClient.postLogin(this.checkoutForm.value);
     // this.httpClient.post('http://localhost:3000/login/test', this.checkoutForm.value)
-    this.httpClient.post<any>('http://localhost:3000/login', this.checkoutForm.value).subscribe();
-    this.checkoutForm.reset();
+    let request = this.httpClient.post<any>('http://localhost:3000/login', this.checkoutForm.value);
+    // console.log(request.subscribe(value) + " test")
+    // request.subscribe(value => console.log(value));
+    request.subscribe(value => {
+      let email;
+      if (value === true) {
+        email = this.checkoutForm.value.email as String;
+        this.profileService.getUser(email);
+      }
+    });
+
+    // this.checkoutForm.reset();
   }
 }

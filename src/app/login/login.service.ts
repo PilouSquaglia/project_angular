@@ -19,4 +19,8 @@ export class LoginService {
     // console.log(values_post);
     return this.httpClient.post('http://localhost:3000/login/test', values);
   }
+
+  getUser(value : {}){
+    return this.httpClient.get('http://localhost:4200/profile', value);
+  }
 }
