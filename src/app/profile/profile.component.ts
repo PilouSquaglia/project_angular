@@ -10,12 +10,17 @@ import { ProfileService } from './profile.service';
 
 export class ProfileComponent {
   users$: Observable<any> | undefined;
+  // emailUser: String;
 
-  constructor(private profileService: ProfileService){
+  // constructor(private profileService: ProfileService,
+  //   emailUser: String) {
+  //   this.emailUser = emailUser;
+  // }
+  constructor(private profileService: ProfileService,) {
   }
 
   ngOnInit(): void {
-    // this.users$ = this.profileService.getUsers();
     this.users$ = this.profileService.getUsers();
+    // this.users$ = this.profileService.getUser(this.emailUser);
   }
 }

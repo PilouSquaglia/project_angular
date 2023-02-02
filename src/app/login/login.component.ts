@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 import { ProfileService } from '../profile/profile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent {
   constructor(private loginService: LoginService,
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private profileService: ProfileService) {
+    private profileService: ProfileService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -42,13 +44,16 @@ export class LoginComponent {
     // console.log(request.subscribe(value) + " test")
     // request.subscribe(value => console.log(value));
     request.subscribe(value => {
-      let email;
-      if (value === true) {
-        email = this.checkoutForm.value.email as String;
-        this.profileService.getUser(email);
-      }
+      // let email;
+      // if (value === true) {
+      //   email = this.checkoutForm.value.email as String;
+      //   // this.profileService.getUser(email);
+      // }
     });
-
+    this.router.navigate(['/profile'])
     // this.checkoutForm.reset();
   }
+//   redirect() {
+//     this.router.navigate(['/login']);
+// }
 }

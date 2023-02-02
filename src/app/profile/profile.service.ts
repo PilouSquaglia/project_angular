@@ -14,7 +14,8 @@ export class ProfileService {
     return request;
   }
   getUser(value: String) {
-    let request = this.httpClient.get('http://localhost:4200/user/' + value);
+    let request = this.httpClient.get('http://localhost:3000/user/' + value);
     console.log(request);
+    return request;
   }
 }

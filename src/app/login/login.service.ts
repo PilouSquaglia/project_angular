@@ -6,13 +6,14 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  constructor(private httpClient : HttpClient) {}
+  constructor(private httpClient: HttpClient,
+  ) { }
 
-  loginUsers(){
+  loginUsers() {
     return this.httpClient.get('http://localhost:3000/login');
   }
 
-  postLogin(values : {}){
+  postLogin(values: {}) {
     console.log("#2");
     console.log(values);
     // let values_post = JSON.stringify(values);
@@ -20,7 +21,7 @@ export class LoginService {
     return this.httpClient.post('http://localhost:3000/login/test', values);
   }
 
-  getUser(value : {}){
+  getUser(value: {}) {
     return this.httpClient.get('http://localhost:4200/profile', value);
   }
 }
